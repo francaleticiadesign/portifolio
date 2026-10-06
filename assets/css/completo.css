@@ -1,0 +1,56 @@
+/* Página completa (vagas híbridas) */
+
+.co-hero { min-height: 92svh; }
+.co-hero__title { font-size: clamp(4.2rem, 1rem + 13vw, 15rem); }
+.co-hero__title .serif { font-weight: 400; letter-spacing: -.02em; color: var(--signal); }
+.co-hero__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 80px); align-items: end; margin-top: clamp(28px, 4vw, 56px); padding-top: clamp(20px, 3vw, 32px); border-top: 1px solid var(--line-strong); }
+.co-hero__tag { font-family: var(--f-display); font-weight: 500; font-size: clamp(1.2rem, .9rem + 1.1vw, 1.8rem); line-height: 1.2; letter-spacing: -.02em; }
+.co-hero__tracks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.co-track { display: grid; gap: .3rem; padding: 1rem 1.1rem 1.1rem; border-radius: var(--radius); background: var(--white); border: 1px solid var(--line); transition: transform .4s var(--ease), background .4s, color .4s; }
+.co-track b { font-family: var(--f-display); font-weight: 700; font-size: 1.15rem; letter-spacing: -.02em; line-height: 1.1; }
+.co-track i { font-style: normal; font-size: var(--fs-xs); color: var(--muted); }
+.co-track .mono { color: var(--signal); }
+.co-track:hover { transform: translateY(-4px); background: var(--ink); color: var(--paper); }
+@media (max-width: 960px) { .co-hero__row { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .co-hero__tracks { grid-template-columns: 1fr; } }
+
+/* vitrine filtrável */
+.co-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); grid-auto-flow: dense; }
+.co-item { display: grid; gap: 1rem; align-content: start; }
+.co-item--wide { grid-column: span 2; }
+.co-item__stage { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 3.6; display: grid; place-items: center; padding: clamp(14px, 2.4vw, 32px); isolation: isolate; }
+.co-item--wide .co-item__stage { aspect-ratio: 16 / 9.4; }
+.co-item__stage > [data-mock] { width: 100%; display: grid; place-items: center; }
+/* mockups mais altos que a vitrine: mostram o topo e esmaecem no fim */
+.co-item__stage--crop { place-items: start center; }
+.co-item__stage--crop::after { content: ""; position: absolute; inset: auto 0 0 0; height: 32%; background: linear-gradient(transparent, var(--stage-bg)); pointer-events: none; z-index: 2; }
+.co-item__meta { display: grid; gap: .3rem; }
+.co-item__meta p { font-size: var(--fs-sm); color: #a8a196; }
+.co-item .work__cat { color: var(--signal); }
+.co-stage--cream { --stage-bg: #f6f2ea; background: var(--stage-bg); color: var(--ink); }
+.co-stage--paper { --stage-bg: var(--paper-2); background: var(--stage-bg); color: var(--ink); }
+.co-stage--night { --stage-bg: var(--night-3); background: var(--stage-bg); }
+.co-stage--sage { --stage-bg: #6e775d; background: var(--stage-bg); }
+.co-stage--kraft { --stage-bg: #c9a77c; background: var(--stage-bg); }
+@media (max-width: 1024px) { .co-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .co-grid { grid-template-columns: 1fr; } .co-item--wide { grid-column: auto; } }
+
+/* destaques */
+.co-shots { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(20px, 4vw, 56px); align-items: end; }
+.co-shots__phone { justify-items: center; }
+@media (max-width: 760px) { .co-shots { grid-template-columns: 1fr; } }
+
+.co-reels { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: clamp(20px, 3vw, 48px); align-items: center; }
+.co-reels > div:not(.co-reels__copy) { width: clamp(200px, 22vw, 280px); }
+@media (max-width: 860px) { .co-reels { grid-template-columns: 1fr 1fr; } .co-reels__copy { grid-column: 1 / -1; } .co-reels > div:not(.co-reels__copy) { width: 100%; } }
+
+.co-benches { display: grid; gap: 2.25rem; }
+
+/* renders e prints preenchendo o palco */
+.co-item__stage:has(> .is-render), .co-item__stage--shot { padding: 0; }
+.co-item__stage > .is-render { --render-radius: 0; height: 100%; }
+.co-item__stage > .is-render > img.render, .co-shot { width: 100%; height: 100%; object-fit: cover; display: block; }
+.co-item__stage .phone { margin-top: 12%; }
+.co-item__stage--spin { padding: 0; }
+.co-item__stage--spin > .spin { height: 100%; width: auto; aspect-ratio: 1; --spin-radius: 0;
+  -webkit-mask-image: radial-gradient(closest-side, #000 80%, transparent); mask-image: radial-gradient(closest-side, #000 80%, transparent); }
